@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { sectionStyles } from "../services/styleService";
 
 function Section() {
   const { sectionId } = useParams();
   const [section, setSection] = useState({});
+  const [style, setStyle] = useState({});
+
+  useEffect(() => {
+    if (Object.keys(section).length !== 0) {
+      switch (section.name) {
+        case "Control Room": {
+          setStyle(sectionStyles.controlRoom());
+          break;
+        }
+        case "Engineering": {
+          setStyle(sectionStyles.engineering());
+        }
+      }
+    }
+  }, [section]);
 
   useEffect(() => {
     fetch(`http://localhost:7000/sections/${sectionId}`)
@@ -15,7 +31,7 @@ function Section() {
 
   if (section.currentCrew) {
     return (
-      <div>
+      <div style={style}>
         <Link to="/">
           <button>Back to Bridge</button>
         </Link>

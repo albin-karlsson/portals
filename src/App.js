@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Bridge from "./components/Bridge";
+import Section from "./components/Section";
+import NotFound from "./components/NotFound";
 
 function App() {
+  useEffect(() => {
+    fetch("http://localhost:7000/sections")
+      .then((res) => res.json())
+      .then((data) => console.table(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Portals</h1>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<Bridge />}
+          />
+          <Route
+            path="/sections/:sectionId"
+            element={<Section />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

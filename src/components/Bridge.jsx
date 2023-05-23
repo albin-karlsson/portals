@@ -13,7 +13,7 @@ function Bridge() {
   return (
     <div>
       {sections.map((s) => (
-        <div>
+        <div key={s.id}>
           <Link to={`/sections/${s.id}`}>{s.name}</Link>
         </div>
       ))}

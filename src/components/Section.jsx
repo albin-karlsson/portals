@@ -6,6 +6,7 @@ function Section() {
   const { sectionId } = useParams();
   const [section, setSection] = useState({});
   const [style, setStyle] = useState({});
+  const [showFact, setShowFact] = useState(false);
 
   useEffect(() => {
     async function fetchSection() {
@@ -35,6 +36,10 @@ function Section() {
     }
   }, [section.name]);
 
+  function toggleInterestingFact() {
+    setShowFact(true);
+  }
+
   if (!Object.keys(section).length) {
     return <div>Loading...</div>;
   }
@@ -46,7 +51,13 @@ function Section() {
       </Link>
       <h1>{section.name}</h1>
       <p>{section.description}</p>
-      <em>{section.interestingFact}</em>
+      {showFact ? (
+        <div>
+          <em>{section.interestingFact}</em>
+        </div>
+      ) : (
+        <button onClick={toggleInterestingFact}>i</button>
+      )}
       {section.currentCrew ? (
         <>
           <h4>Current Crew:</h4>

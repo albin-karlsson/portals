@@ -24,10 +24,10 @@ function Section() {
     if (section.name) {
       switch (section.name) {
         case "Control Room":
-          setStyle(sectionStyles.controlRoom());
+          setStyle(sectionStyles.controlRoom);
           break;
         case "Engineering":
-          setStyle(sectionStyles.engineering());
+          setStyle(sectionStyles.engineering);
           break;
         default:
           setStyle({});

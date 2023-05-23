@@ -1,8 +1,7 @@
 export class sectionStyles {
-  static controlRoom() {
-    return { backgroundColor: "red", color: "white" };
-  }
-  static engineering() {
-    return { backgroundColor: "blue", color: "white" };
-  }
+  static controlRoom = { backgroundColor: "red", color: "white" };
+  static engineering = {
+    backgroundColor: "blue",
+    color: "white",
+  };
 }
